@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <!-- This is an app with a table of a company's employees and will calculate -->
+    <!-- the company's monthly cost from the employees annual salaries -->
     <h1>Salary Calculator</h1>
+    <!-- This input field will take in employee info and when submitted with the button -->
+    <!-- will create a space on the table of employees for that employee and their info -->
     <div class="employeeInputs" style="width: 100%">
       <input type="text" id="firstNameInput" placeholder="First Name">
       <input type="text" id="lastNameInput" placeholder="Last Name">
@@ -17,6 +21,7 @@
       <input type="text" id="annualSalaryInput" placeholder="Annual Salary">
       <button type="button" id="submitBtn">Submit</button>
     </div>
+    <!-- this table will hold the employee info -->
     <div id="employeeTableParentDiv">
       <table id="employeeTable" style="width: 100%">
         <tr id="tableHead">
@@ -26,13 +31,13 @@
           <th>Job Title</th>
           <th>Annual Salary</th>
         </tr>
-        <tr id="empoyeeInfo">
-          <td id="firstNameCell"></td>
-          <td id="lastNameCell"></td>
-          <td id="idNumberCell"></td>
-          <td id="jobTitleCell"></td>
-          <td id="annualSalaryCell"></td>
-        </tr>
+        <!-- <tr id="empoyeeInfo">
+          <td id="firstNameCell"> name </td>
+          <td id="lastNameCell"> last </td>
+          <td id="idNumberCell"> 34567 </td>
+          <td id="jobTitleCell"> sdfsdf </td>
+          <td id="annualSalaryCell"> 34567 </td>
+        </tr> -->
       </table>
     </div>
     <div id="outputDiv"></div>

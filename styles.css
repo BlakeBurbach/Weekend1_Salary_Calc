@@ -16,9 +16,11 @@ th, td{
 }
 
 th{
+  text-align: center;
   background-color: lightgray;
 }
 
 td{
+  text-align: center;
   background-color: white;
 }
