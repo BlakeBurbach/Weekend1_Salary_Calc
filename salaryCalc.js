@@ -27,7 +27,7 @@ function readyNow(){
   pushEmployeeOnClick();
   appendEmployeeOnClick();
 
-
+  // clear the input fields once a user has made a submission
   clearInputFields();
 
 
@@ -47,6 +47,7 @@ function pushEmployeeOnClick(){
     console.log( employeeArray );
     return updatedEmployee;
   }); // end on click
+  clearInputFields();
 } // end addEmployeeOnClick
 
 // function that will create a new employee object and append it to the table DOM
@@ -72,17 +73,18 @@ function appendEmployeeOnClick(){
                                   '<td>' + id + '</td>' +
                                   '<td>' + jobTitle + '</td>' +
                                   '<td>' + salary + '</td></tr>' );
+    clearInputFields();
   }); // end create employee on click
 } // end appendEmployeeToTable
+
+
 
 //this function will clear the input field after a submission has been made
 function clearInputFields(){
   // once these functions have been run, clear the input fields
-  if ( addEmployeeOnClick === true && appendEmployeeToTable === true ){
-    return $( '#firstNameInput' ).val( '' ),
+  return $( '#firstNameInput' ).val( '' ),
            $( '#lastNameInput' ).val( '' ),
            $( '#idNumberInput' ).val( '' ),
            $( '#jobTitleInput' ).val( '' ),
            $( '#annualSalaryInput' ).val( '' );
-  } // end if
 } // end clearInputFields
