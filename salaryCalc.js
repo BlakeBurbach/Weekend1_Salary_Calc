@@ -9,7 +9,7 @@ class Employee {
   }
 }
 
-let monthlyBudget = 20000;
+let monthlyBudget = 0;
 let employeeArray = [];
 
 // doc ready
@@ -26,11 +26,11 @@ function readyNow(){
   clearInputFields();
 
   // a function that will calculate the monthly cost based on each employees salary
-  calculateMonthlyCost();
+  calculateTotalEmployeeSalary();
 
 } // end readyNow
 
-// on click the submit button create an employee and add it to the employeeArray
+// on click the submit button create an employee and add it to employeeArray
 function pushEmployeeOnClick(){
   $( '#submitBtn' ).on( 'click', function(){
 // variables that will house the input values for ease of rewriting and using in preceding functions
@@ -38,34 +38,37 @@ function pushEmployeeOnClick(){
     let last = $( '#lastNameInput' ).val();
     let id = $( '#idNumberInput' ).val();
     let jobTitle = $( '#jobTitleInput' ).val();
-    let salary = Number( $( '#annualSalaryInput' ).val() );
-    //this updatedEmployee is the same employee object that is created with appendEmployeeOnClick()
+    let salary = Number($( '#annualSalaryInput' ).val());
+    //this new employee is the same employee object that will be used in appendEmployee()
     let updatedEmployee = new Employee( first, last, id, jobTitle, salary  );
     employeeArray.push( updatedEmployee );
     console.log( employeeArray );
-    appendEmployeeOnClick( first, last, id, jobTitle, salary  );
-    calculateMonthlyCost( salary );
+    //activate appendEmployee
+    appendEmployee( first, last, id, jobTitle, salary  );
+    //activate calculateTotalEmployeeSalary() with employee salary info
+    calculateTotalEmployeeSalary( salary );
     return updatedEmployee;
   }); // end on click
   clearInputFields();
-} // end addEmployeeOnClick
+} // end pushEmployeeOnClick
 
 // function that will take employee info from pushEmployeeOnClick() and append it to the table DOM
-function appendEmployeeOnClick( first, last, id, jobTitle, salary  ){
+function appendEmployee( first, last, id, jobTitle, salary  ){
   console.log( 'button is working' );
   // append the new employee info to the table
   $( '#employeeTable' ).append( '<tr><td>' + first + '</td>' +
                                 '<td>' + last + '</td>' +
                                 '<td>' + id + '</td>' +
                                 '<td>' + jobTitle + '</td>' +
-                                '<td>$' + salary + '</td></tr>' );
+                                '<td>$' + salary + '.00</td></tr>' );
+  clearInputFields();
 } // end appendEmployeeToTable
 
 
 
 // this function will clear the input field after a submission has been made
 function clearInputFields(){
-  // once these functions have been run, clear the input fields
+  // clear the input fields when page loads and when a submission has been made
   return $( '#firstNameInput' ).val( '' ),
            $( '#lastNameInput' ).val( '' ),
            $( '#idNumberInput' ).val( '' ),
@@ -73,13 +76,24 @@ function clearInputFields(){
            $( '#annualSalaryInput' ).val( '' );
 } // end clearInputFields
 
-// this function will calculate the monthly cost of each employees salary
-function calculateMonthlyCost( salary ){
-  console.log( 'in calculateMonthlyCost' );
-  let monthlyCost = 0;
-  // loop through employees and add salaries to monthly costs
+// this function will calculate the total of each employees salary
+function calculateTotalEmployeeSalary( salary ){
+  let totalEmployeeSalary = 0;
+  // loop through employees and add salaries to totalEmployeeSalary
   for ( let employee of employeeArray ){
-    monthlyCost += salary;
-  } // end for of
-  console.log( 'Monthly Cost: $', monthlyCost );
+    totalEmployeeSalary += salary;
+  } // end for of loop
+  console.log( 'Total Employee Salary: $', Number(totalEmployeeSalary) );
+  updateMonthlyCost( totalEmployeeSalary );
+} // end calculateTotalEmployeeSalary
+
+// this will take the totalEmployeeSalary and subtract it from the monthlyBudget
+function updateMonthlyCost( totalEmployeeSalary ){
+  let monthlyCost = totalEmployeeSalary / 12;
+  console.log( 'Monthly Cost: $', Number(monthlyCost).toFixed(2) );
+  $( '#monthlyCost' ).text( 'Monthly Cost: $' + Number(monthlyCost).toFixed(2) + '' );
+  if( monthlyCost > 20000 ){
+    $( '#monthlyCost' ).text( 'Monthly Cost: $' + Number(monthlyCost).toFixed(2) + '' );
+    $( '#monthlyCost' ).css( 'background-color', 'red' );
+  }
 }
