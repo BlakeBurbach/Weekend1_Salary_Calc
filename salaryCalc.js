@@ -11,7 +11,7 @@ class Employee {
   }
 }
 
-
+let monthlyBudget = 20000;
 let employeeArray = [];
 
 // doc ready
@@ -30,6 +30,8 @@ function readyNow(){
   // clear the input fields once a user has made a submission
   clearInputFields();
 
+  // a function that will calculate the monthly cost based on each employees salary
+  calculateMonthlyCost();
 
 } // end readyNow
 
@@ -74,12 +76,13 @@ function appendEmployeeOnClick(){
                                   '<td>' + jobTitle + '</td>' +
                                   '<td>' + salary + '</td></tr>' );
     clearInputFields();
+    calculateMonthlyCost( salary );
   }); // end create employee on click
 } // end appendEmployeeToTable
 
 
 
-//this function will clear the input field after a submission has been made
+// this function will clear the input field after a submission has been made
 function clearInputFields(){
   // once these functions have been run, clear the input fields
   return $( '#firstNameInput' ).val( '' ),
@@ -88,3 +91,8 @@ function clearInputFields(){
            $( '#jobTitleInput' ).val( '' ),
            $( '#annualSalaryInput' ).val( '' );
 } // end clearInputFields
+
+// this function will calculate the monthly cost of each employees salary
+function calculateMonthlyCost( salary ){
+  let monthlyCost = 0;
+}

@@ -6,21 +6,27 @@ input{
   margin: 10px;
 }
 
-table, th, td{
+table, thead, td, tfoot{
   border: 1px solid black;
   border-collapse: collapse;
 }
 
-th, td{
+thead, td, tfoot{
   padding: 10px;
 }
 
-th{
+thead{
   text-align: center;
   background-color: lightgray;
 }
 
+
 td{
   text-align: center;
   background-color: white;
+}
+
+tfoot{
+  text-align: center;
+  background-color: lightgray;
 }

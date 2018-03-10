@@ -1,13 +1,14 @@
 //[x] make a class called Employee with all the employee information
 
-// create a function that will create a new employee with information that it is given
+// [x] create a function that will create a new employee with information that it is given
 
 // [x] create a table that will house the employee information on the DOM
 
-// create a button that when clicked will
+//[x] create a button that when clicked will
 // create and append a new employee to the table on the DOM with
 //information that is put into the input fields
 
+// [x] create a function that will clear the input fields once a submission has been made
 
 //create a function that will calculate the company's monthly cost according to
 //each employees annual salary

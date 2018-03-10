@@ -24,13 +24,21 @@
     <!-- this table will hold the employee info -->
     <div id="employeeTableParentDiv">
       <table id="employeeTable" style="width: 100%">
-        <tr id="tableHead">
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>ID Number</th>
-          <th>Job Title</th>
-          <th>Annual Salary</th>
-        </tr>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>ID Number</th>
+            <th>Job Title</th>
+            <th>Annual Salary</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr id="tableFoot" >
+            <td id="monthlyCost">Monthly Cost: </td>
+          </tr>
+        </tfoot>
+
         <!-- <tr id="empoyeeInfo">
           <td id="firstNameCell"> name </td>
           <td id="lastNameCell"> last </td>
