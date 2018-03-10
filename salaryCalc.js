@@ -1,5 +1,3 @@
-console.log( 'js' );
-
 // class to create employee objects
 class Employee {
   constructor( firstNameIn, lastNameIn, idNumberIn, jobTitleIn, annualSalaryIn ){
@@ -19,13 +17,10 @@ $( document ).ready( readyNow );
 
 // when doc is ready
 function readyNow(){
-  console.log('jquery');
 
-  // these two functions create ONE employee object from the Employee class
-  // pushEmployeeOnClick() will push it to the employeeArray
-  // appendEmployeeOnClick() will append to the employee table
+  // this function creates ONE employee object from the Employee class
+  // and push it to the employeeArray
   pushEmployeeOnClick();
-  appendEmployeeOnClick();
 
   // clear the input fields once a user has made a submission
   clearInputFields();
@@ -38,46 +33,32 @@ function readyNow(){
 // on click the submit button create an employee and add it to the employeeArray
 function pushEmployeeOnClick(){
   $( '#submitBtn' ).on( 'click', function(){
-    console.log( 'button is working' );
+// variables that will house the input values for ease of rewriting and using in preceding functions
+    let first = $( '#firstNameInput' ).val();
+    let last = $( '#lastNameInput' ).val();
+    let id = $( '#idNumberInput' ).val();
+    let jobTitle = $( '#jobTitleInput' ).val();
+    let salary = Number( $( '#annualSalaryInput' ).val() );
     //this updatedEmployee is the same employee object that is created with appendEmployeeOnClick()
-    let updatedEmployee = new Employee( $( '#firstNameInput' ).val(),
-                                        $( '#lastNameInput' ).val(),
-                                        $( '#idNumberInput' ).val(),
-                                        $( '#jobTitleInput' ).val(),
-                                        $( '#annualSalaryInput' ).val() );
+    let updatedEmployee = new Employee( first, last, id, jobTitle, salary  );
     employeeArray.push( updatedEmployee );
     console.log( employeeArray );
+    appendEmployeeOnClick( first, last, id, jobTitle, salary  );
+    calculateMonthlyCost( salary );
     return updatedEmployee;
   }); // end on click
   clearInputFields();
 } // end addEmployeeOnClick
 
-// function that will create a new employee object and append it to the table DOM
-function appendEmployeeOnClick(){
-  // on click create a new employee object
-  $( '#submitBtn' ).on( 'click', function(){
-    console.log( 'button is working' );
-    // this updatedEmployee is the same employee object that is created in pushEmployeeOnClick()
-    let updatedEmployee = new Employee( $( '#firstNameInput' ).val(),
-                                        $( '#lastNameInput' ).val(),
-                                        $( '#idNumberInput' ).val(),
-                                        $( '#jobTitleInput' ).val(),
-                                        $( '#annualSalaryInput' ).val() );
-    // variables that will house the input values for ease of rewriting
-    let first = $( '#firstNameInput' ).val();
-    let last = $( '#lastNameInput' ).val();
-    let id = $( '#idNumberInput' ).val();
-    let jobTitle = $( '#jobTitleInput' ).val();
-    let salary = $( '#annualSalaryInput' ).val();
-    // append the new employee info to the table
-    $( '#employeeTable' ).append( '<tr><td>' + first + '</td>' +
-                                  '<td>' + last + '</td>' +
-                                  '<td>' + id + '</td>' +
-                                  '<td>' + jobTitle + '</td>' +
-                                  '<td>' + salary + '</td></tr>' );
-    clearInputFields();
-    calculateMonthlyCost( salary );
-  }); // end create employee on click
+// function that will take employee info from pushEmployeeOnClick() and append it to the table DOM
+function appendEmployeeOnClick( first, last, id, jobTitle, salary  ){
+  console.log( 'button is working' );
+  // append the new employee info to the table
+  $( '#employeeTable' ).append( '<tr><td>' + first + '</td>' +
+                                '<td>' + last + '</td>' +
+                                '<td>' + id + '</td>' +
+                                '<td>' + jobTitle + '</td>' +
+                                '<td>$' + salary + '</td></tr>' );
 } // end appendEmployeeToTable
 
 
@@ -94,5 +75,11 @@ function clearInputFields(){
 
 // this function will calculate the monthly cost of each employees salary
 function calculateMonthlyCost( salary ){
+  console.log( 'in calculateMonthlyCost' );
   let monthlyCost = 0;
+  // loop through employees and add salaries to monthly costs
+  for ( let employee of employeeArray ){
+    monthlyCost += salary;
+  } // end for of
+  console.log( 'Monthly Cost: $', monthlyCost );
 }
