@@ -33,21 +33,25 @@ function readyNow(){
 // on click the submit button create an employee and add it to employeeArray
 function pushEmployeeOnClick(){
   $( '#submitBtn' ).on( 'click', function(){
-// variables that will house the input values for ease of rewriting and using in preceding functions
-    let first = $( '#firstNameInput' ).val();
-    let last = $( '#lastNameInput' ).val();
-    let id = $( '#idNumberInput' ).val();
-    let jobTitle = $( '#jobTitleInput' ).val();
-    let salary = Number($( '#annualSalaryInput' ).val());
-    //this new employee is the same employee object that will be used in appendEmployee()
-    let updatedEmployee = new Employee( first, last, id, jobTitle, salary  );
-    employeeArray.push( updatedEmployee );
-    console.log( employeeArray );
-    //activate appendEmployee
-    appendEmployee( first, last, id, jobTitle, salary  );
-    //activate calculateTotalEmployeeSalary() with employee salary info
-    calculateTotalEmployeeSalary( salary );
-    return updatedEmployee;
+    if ($('#firstNameInput').val()=='', $('#lastNameInput').val()=='', $('#idNumberInput').val()=='', $('#jobTitleInput').val()=='', $('#annualSalaryInput').val()==''){
+      alert('Fill in all input fields');
+    } else {
+      // variables that will house the input values for ease of rewriting and using in preceding functions
+      let first = $( '#firstNameInput' ).val();
+      let last = $( '#lastNameInput' ).val();
+      let id = $( '#idNumberInput' ).val();
+      let jobTitle = $( '#jobTitleInput' ).val();
+      let salary = Number($( '#annualSalaryInput' ).val());
+      //this new employee is the same employee object that will be used in appendEmployee()
+      let updatedEmployee = new Employee( first, last, id, jobTitle, salary  );
+      employeeArray.push( updatedEmployee );
+      console.log( employeeArray );
+      //activate appendEmployee
+      appendEmployee( first, last, id, jobTitle, salary  );
+      //activate calculateTotalEmployeeSalary() with employee salary info
+      calculateTotalEmployeeSalary( salary );
+      return updatedEmployee;
+    }
   }); // end on click
   clearInputFields();
 } // end pushEmployeeOnClick
@@ -55,12 +59,14 @@ function pushEmployeeOnClick(){
 // function that will take employee info from pushEmployeeOnClick() and append it to the table DOM
 function appendEmployee( first, last, id, jobTitle, salary  ){
   console.log( 'button is working' );
-  // append the new employee info to the table
+  let removeButton =
+  // append the new employee info to the table with a removal button attached 
   $( '#employeeTable' ).append( '<tr><td>' + first + '</td>' +
                                 '<td>' + last + '</td>' +
                                 '<td>' + id + '</td>' +
                                 '<td>' + jobTitle + '</td>' +
-                                '<td>$' + salary + '.00</td></tr>' );
+                                '<td>$'+ salary + '.00</td>' +
+                                '<td><button id="removeButton">Remove Employee</td></tr>' );
   clearInputFields();
 } // end appendEmployeeToTable
 
