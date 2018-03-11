@@ -9,6 +9,7 @@ class Employee {
   } // end constructor
 } // end employee class
 
+// a global variable for the monthlyBudget that will be used in
 let monthlyBudget = 0;
 let employeeArray = [];
 
@@ -60,7 +61,6 @@ function pushEmployeeOnClick(){
 // function that will take employee info from pushEmployeeOnClick() and append it to the table DOM
 function appendEmployee( first, last, id, jobTitle, salary  ){
   console.log( 'button is working' );
-  let removeButton =
   // append the new employee info to the table with a removal button attached
   $( '#employeeTable' ).append( '<tr id="employeeObject"><td>' + first + '</td>' +
                                 '<td>' + last + '</td>' +
@@ -69,7 +69,6 @@ function appendEmployee( first, last, id, jobTitle, salary  ){
                                 '<td>$'+ salary + '.00</td>' +
                                 '<td><button id="removeButton">Remove Employee</td></tr>' );
   clearInputFields();
-  // removeEmployee();
 } // end appendEmployeeToTable
 
 
@@ -87,14 +86,14 @@ function calculateTotalEmployeeSalary( salary ){
   updateMonthlyCost( totalEmployeeSalary );
 } // end calculateTotalEmployeeSalary
 
-// this will take the totalEmployeeSalary and subtract it from the monthlyBudget
+// function to calculate monthly budget from the employee salary total
 function updateMonthlyCost( totalEmployeeSalary ){
-  let monthlyCost = totalEmployeeSalary / 12;
-  console.log( 'Monthly Cost: $', Number(monthlyCost).toFixed(2) );
-  $( '#monthlyCost' ).text( 'Monthly Cost: $' + Number(monthlyCost).toFixed(2) + '' );
-  if( monthlyCost > 20000 ){
-    $( '#monthlyCost' ).text( 'Monthly Cost: $' + Number(monthlyCost).toFixed(2) + '' );
-    $( '#monthlyCost' ).css( 'background-color', 'red' );
+  let monthlyBudget = totalEmployeeSalary / 12;
+  console.log( 'Monthly Budget: $', Number(monthlyBudget).toFixed(2) );
+  $( '#monthlyBudget' ).text( 'Monthly Budget: $' + Number(monthlyBudget).toFixed(2) + '' );
+  if( monthlyBudget > 20000 ){
+    $( '#monthlyBudget' ).text( 'Monthly Budget: $' + Number(monthlyBudget).toFixed(2) + '' );
+    $( '#monthlyBudget' ).css( 'background-color', 'red' );
   }
 }
 
@@ -114,7 +113,7 @@ function clearInputFields(){
 // a remove button that will remove an employee from the table on click
 function removeEmployee(){
   $('#employeeInfo').on( 'click', '#removeButton', function(){
-    console.log( 'remove button working' );
-    $( '#employeeObject' ).remove();
+    console.log( this );
+    $( this ).closest( '#employeeObject' ).remove();
   }); // end on click
 } // end removeEmployee
