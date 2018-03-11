@@ -39,9 +39,9 @@ function pushEmployeeOnClick(){
   $( '#submitBtn' ).on( 'click', function(){
     // if any input field is left blank when trying to submit, alert the user
     // to fill in all input fields
-    // if ($('#firstNameInput').val()=='', $('#lastNameInput').val()=='', $('#idNumberInput').val()=='', $('#jobTitleInput').val()=='', $('#annualSalaryInput').val()==''){
-    //   alert('Fill in all input fields');
-    // } else {
+    if ($('#firstNameInput').val()=='', $('#lastNameInput').val()=='', $('#idNumberInput').val()=='', $('#jobTitleInput').val()=='', $('#annualSalaryInput').val()==''){
+      alert('Fill in all input fields');
+    } else {
       // variables that will house the input values for ease of rewriting and
       // using in preceding functions
       let first = $( '#firstNameInput' ).val();
@@ -59,7 +59,7 @@ function pushEmployeeOnClick(){
       //activate calculateTotalEmployeeSalary() with employee salary info
       calculateTotalEmployeeSalary( salary );
       return updatedEmployee;
-    // } // end create and push employee
+    } // end create and push employee
   }); // end on click
   clearInputFields();
 } // end pushEmployeeOnClick
