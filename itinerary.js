@@ -10,8 +10,11 @@
 
 // [x] create a function that will clear the input fields once a submission has been made
 
-//create a function that will calculate the company's monthly cost according to
+// [x] create a function that will calculate the company's monthly cost according to
 //each employees annual salary
 
-//create a function that will turn the company's total monthly cost ready
+// [x] create a function that will turn the company's total monthly cost red
 //when the company monthly cost goes over company's monthly budget
+
+// create a button to an employee object and when clicked
+// will remove that employee object
