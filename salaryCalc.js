@@ -30,7 +30,7 @@ function readyNow(){
 
 } // end readyNow
 
-//                ------- creating employee functions ----------
+// ---------------------- creating employee functions ---------------------
 
 // on click the submit button create an employee and add it to employeeArray
 function pushEmployeeOnClick(){
@@ -73,7 +73,7 @@ function appendEmployee( first, last, id, jobTitle, salary  ){
 
 
 
-//                ------ calculation functions ---------
+//  --------------------- calculation functions ---------
 
 // this function will calculate the total of each employees salary
 function calculateTotalEmployeeSalary( salary ){
@@ -100,6 +100,7 @@ function updateMonthlyCost( totalEmployeeSalary ){
 
 
 //      --------------- removal functions -------------------------
+
 // this function will clear the input field after a submission has been made
 function clearInputFields(){
   // clear the input fields when page loads and when a submission has been made
