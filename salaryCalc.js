@@ -10,7 +10,7 @@ class Employee {
 } // end employee class
 
 // a global variable for the monthlyBudget that will be used in
-let monthlyBudget = 0;
+
 let employeeArray = [];
 
 
@@ -24,16 +24,12 @@ function readyNow(){
   // and push it to the employeeArray
   pushEmployeeOnClick();
   // a function that will calculate the monthly cost based on each employees salary
-  calculateTotalEmployeeSalary();
+  // calculateTotalEmployeeSalary();
   // clear the input fields once a user has made a submission
   clearInputFields();
   //a button that will remove employee from table
   removeEmployee();
 
-  // a function that will adjust monthly budget when an employee is removed
-  // adjustMonthlyBudget();
-  // $( '#employeeObject' ).data( 'employeeSalary', $( '#annualSalaryInput' ).val());
-  // console.log( $('employeeObject').data( 'employeeSalary' ));
 } // end readyNow
 
 // ---------------------- creating employee functions ---------------------
@@ -43,9 +39,9 @@ function pushEmployeeOnClick(){
   $( '#submitBtn' ).on( 'click', function(){
     // if any input field is left blank when trying to submit, alert the user
     // to fill in all input fields
-    if ($('#firstNameInput').val()=='', $('#lastNameInput').val()=='', $('#idNumberInput').val()=='', $('#jobTitleInput').val()=='', $('#annualSalaryInput').val()==''){
-      alert('Fill in all input fields');
-    } else {
+    // if ($('#firstNameInput').val()=='', $('#lastNameInput').val()=='', $('#idNumberInput').val()=='', $('#jobTitleInput').val()=='', $('#annualSalaryInput').val()==''){
+    //   alert('Fill in all input fields');
+    // } else {
       // variables that will house the input values for ease of rewriting and
       // using in preceding functions
       let first = $( '#firstNameInput' ).val();
@@ -58,12 +54,12 @@ function pushEmployeeOnClick(){
       let updatedEmployee = new Employee( first, last, id, jobTitle, salary  );
       employeeArray.push( updatedEmployee );
       console.log( employeeArray );
-      //activate appendEmployee
+      //activate appendEmployee with the newly create class object info
       appendEmployee( first, last, id, jobTitle, salary  );
       //activate calculateTotalEmployeeSalary() with employee salary info
       calculateTotalEmployeeSalary( salary );
       return updatedEmployee;
-    } // end create and push employee
+    // } // end create and push employee
   }); // end on click
   clearInputFields();
 } // end pushEmployeeOnClick
@@ -90,24 +86,32 @@ function appendEmployee( first, last, id, jobTitle, salary  ){
 function calculateTotalEmployeeSalary( salary ){
   let totalEmployeeSalary = 0;
   // loop through employees and add salaries to totalEmployeeSalary
-  for ( let employee of employeeArray ){
+  for (let employee of employeeArray){
     totalEmployeeSalary += salary;
   } // end for of loop
-  updateMonthlyCost( totalEmployeeSalary );
   console.log( 'Total Employee Salary: $', Number(totalEmployeeSalary) );
+  updateMonthlyCost( totalEmployeeSalary );
+  // return totalEmployeeSalary;
 } // end calculateTotalEmployeeSalary
 
 // function to calculate monthly budget from the employee salary total
 function updateMonthlyCost( totalEmployeeSalary ){
+  // new variable with a value of total annual salaries divided by 12
   let monthlyBudget = totalEmployeeSalary / 12;
   console.log( 'Monthly Budget: $', Number(monthlyBudget).toFixed(2) );
-  $( '#monthlyBudget' ).text( 'Monthly Budget: $' + Number(monthlyBudget).toFixed(2) + '' );
+  // since the company's monthly budget is $20,000 - an if statement to indicate
+  // what happens when the monthly budget is exceeded
+  // in this case change the background color of monthlyBudget to red
+  $('#monthlyBudget').empty();
   if( monthlyBudget > 20000 ){
     $( '#monthlyBudget' ).text( 'Monthly Budget: $' + Number(monthlyBudget).toFixed(2) + '' );
     $( '#monthlyBudget' ).css( 'background-color', 'red' );
-  }
-  // adjustMonthlyBudget( salary );
-}
+  } else {
+    // if everything is normal - just display the monthly budget of all
+    // employees on table at this point
+    $( '#monthlyBudget' ).text( 'Monthly Budget: $' + Number(monthlyBudget).toFixed(2) + '' );
+  } // end if statement
+} // end updateMonthlyCost
 
 
 
@@ -115,7 +119,7 @@ function updateMonthlyCost( totalEmployeeSalary ){
 
 // this function will clear the input field after a submission has been made
 function clearInputFields(){
-  // clear the input fields when page loads and when a submission has been made
+  // clear the input fields when page loads and also when a submission has been made
   return $( '#firstNameInput' ).val( '' ),
          $( '#lastNameInput' ).val( '' ),
          $( '#idNumberInput' ).val( '' ),
@@ -127,18 +131,5 @@ function clearInputFields(){
 function removeEmployee(){
   $('#employeeInfo').on( 'click', '#removeButton', function(){
     $( this ).closest( '#employeeObject' ).remove();
-    console.log( employeeArray );
   }); // end on click
 } // end removeEmployee
-
-// // adjust the monthly budget when an employee is removed from the table
-// function adjustMonthlyBudget( totalEmployeeSalary, salary ){
-//   console.log( 'in adjustMonthlyBudget' );
-//   // $('#employeeInfo').on( 'click', '#removeButton', function(){
-//   //   for ( let employee of employeeArray ){
-//   //     totalEmployeeSalary -= salary;
-//   //     console.log( 'Total Employee Salary: $', totalEmployeeSalary );
-//   //     updateMonthlyCost();
-//   //   }
-//   // }); // end on click
-// }
