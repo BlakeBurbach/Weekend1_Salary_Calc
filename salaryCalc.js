@@ -6,8 +6,8 @@ class Employee {
     this.idNumberIn = idNumberIn;
     this.jobTitleIn = jobTitleIn;
     this.annualSalaryIn = annualSalaryIn;
-  }
-}
+  } // end constructor
+} // end employee class
 
 let monthlyBudget = 0;
 let employeeArray = [];
