@@ -14,21 +14,22 @@ let employeeArray = [];
 
 // doc ready
 $( document ).ready( readyNow );
-
 // when doc is ready
 function readyNow(){
 
   // this function creates ONE employee object from the Employee class
   // and push it to the employeeArray
   pushEmployeeOnClick();
-
-  // clear the input fields once a user has made a submission
-  clearInputFields();
-
   // a function that will calculate the monthly cost based on each employees salary
   calculateTotalEmployeeSalary();
+  // clear the input fields once a user has made a submission
+  clearInputFields();
+  //a button that will remove employee from table
+  removeEmployee();
 
 } // end readyNow
+
+//                ------- creating employee functions ----------
 
 // on click the submit button create an employee and add it to employeeArray
 function pushEmployeeOnClick(){
@@ -60,7 +61,7 @@ function pushEmployeeOnClick(){
 function appendEmployee( first, last, id, jobTitle, salary  ){
   console.log( 'button is working' );
   let removeButton =
-  // append the new employee info to the table with a removal button attached 
+  // append the new employee info to the table with a removal button attached
   $( '#employeeTable' ).append( '<tr><td>' + first + '</td>' +
                                 '<td>' + last + '</td>' +
                                 '<td>' + id + '</td>' +
@@ -68,19 +69,12 @@ function appendEmployee( first, last, id, jobTitle, salary  ){
                                 '<td>$'+ salary + '.00</td>' +
                                 '<td><button id="removeButton">Remove Employee</td></tr>' );
   clearInputFields();
+  removeEmployee();
 } // end appendEmployeeToTable
 
 
 
-// this function will clear the input field after a submission has been made
-function clearInputFields(){
-  // clear the input fields when page loads and when a submission has been made
-  return $( '#firstNameInput' ).val( '' ),
-           $( '#lastNameInput' ).val( '' ),
-           $( '#idNumberInput' ).val( '' ),
-           $( '#jobTitleInput' ).val( '' ),
-           $( '#annualSalaryInput' ).val( '' );
-} // end clearInputFields
+//                ------ calculation functions ---------
 
 // this function will calculate the total of each employees salary
 function calculateTotalEmployeeSalary( salary ){
@@ -102,4 +96,25 @@ function updateMonthlyCost( totalEmployeeSalary ){
     $( '#monthlyCost' ).text( 'Monthly Cost: $' + Number(monthlyCost).toFixed(2) + '' );
     $( '#monthlyCost' ).css( 'background-color', 'red' );
   }
+}
+
+
+
+//      --------------- removal functions -------------------------
+// this function will clear the input field after a submission has been made
+function clearInputFields(){
+  // clear the input fields when page loads and when a submission has been made
+  return $( '#firstNameInput' ).val( '' ),
+           $( '#lastNameInput' ).val( '' ),
+           $( '#idNumberInput' ).val( '' ),
+           $( '#jobTitleInput' ).val( '' ),
+           $( '#annualSalaryInput' ).val( '' );
+} // end clearInputFields
+
+// a remove button that will remove an employee from the table on click
+function removeEmployee(){
+  $('#removeButton').on( 'click', function(){
+    console.log( 'remove button working' );
+    
+  });
 }
