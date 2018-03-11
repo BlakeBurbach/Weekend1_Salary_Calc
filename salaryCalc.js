@@ -62,14 +62,14 @@ function appendEmployee( first, last, id, jobTitle, salary  ){
   console.log( 'button is working' );
   let removeButton =
   // append the new employee info to the table with a removal button attached
-  $( '#employeeTable' ).append( '<tr><td>' + first + '</td>' +
+  $( '#employeeTable' ).append( '<tr id="employeeObject"><td>' + first + '</td>' +
                                 '<td>' + last + '</td>' +
                                 '<td>' + id + '</td>' +
                                 '<td>' + jobTitle + '</td>' +
                                 '<td>$'+ salary + '.00</td>' +
                                 '<td><button id="removeButton">Remove Employee</td></tr>' );
   clearInputFields();
-  removeEmployee();
+  // removeEmployee();
 } // end appendEmployeeToTable
 
 
@@ -105,16 +105,16 @@ function updateMonthlyCost( totalEmployeeSalary ){
 function clearInputFields(){
   // clear the input fields when page loads and when a submission has been made
   return $( '#firstNameInput' ).val( '' ),
-           $( '#lastNameInput' ).val( '' ),
-           $( '#idNumberInput' ).val( '' ),
-           $( '#jobTitleInput' ).val( '' ),
-           $( '#annualSalaryInput' ).val( '' );
+         $( '#lastNameInput' ).val( '' ),
+         $( '#idNumberInput' ).val( '' ),
+         $( '#jobTitleInput' ).val( '' ),
+         $( '#annualSalaryInput' ).val( '' );
 } // end clearInputFields
 
 // a remove button that will remove an employee from the table on click
 function removeEmployee(){
-  $('#removeButton').on( 'click', function(){
+  $('#employeeInfo').on( 'click', '#removeButton', function(){
     console.log( 'remove button working' );
-    
-  });
-}
+    $( '#employeeObject' ).remove();
+  }); // end on click
+} // end removeEmployee
