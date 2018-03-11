@@ -113,7 +113,6 @@ function clearInputFields(){
 // a remove button that will remove an employee from the table on click
 function removeEmployee(){
   $('#employeeInfo').on( 'click', '#removeButton', function(){
-    console.log( this );
     $( this ).closest( '#employeeObject' ).remove();
   }); // end on click
 } // end removeEmployee
