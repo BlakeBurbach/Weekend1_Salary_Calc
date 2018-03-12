@@ -9,8 +9,9 @@ class Employee {
   } // end constructor
 } // end employee class
 
-// a global variable for the monthlyBudget that will be used in
 
+let monthlyBudget = 0;
+let totalEmployeeSalary = 0;
 let employeeArray = [];
 
 
@@ -39,9 +40,9 @@ function pushEmployeeOnClick(){
   $( '#submitBtn' ).on( 'click', function(){
     // if any input field is left blank when trying to submit, alert the user
     // to fill in all input fields
-    if ($('#firstNameInput').val()=='', $('#lastNameInput').val()=='', $('#idNumberInput').val()=='', $('#jobTitleInput').val()=='', $('#annualSalaryInput').val()==''){
-      alert('Fill in all input fields');
-    } else {
+    // if ($('#firstNameInput').val()=='', $('#lastNameInput').val()=='', $('#idNumberInput').val()=='', $('#jobTitleInput').val()=='', $('#annualSalaryInput').val()==''){
+    //   alert('Fill in all input fields');
+    // } else {
       // variables that will house the input values for ease of rewriting and
       // using in preceding functions
       let first = $( '#firstNameInput' ).val();
@@ -57,9 +58,9 @@ function pushEmployeeOnClick(){
       //activate appendEmployee with the newly create class object info
       appendEmployee( first, last, id, jobTitle, salary  );
       //activate calculateTotalEmployeeSalary() with employee salary info
-      calculateTotalEmployeeSalary( salary );
-      return updatedEmployee;
-    } // end create and push employee
+      // calculateTotalEmployeeSalary( salary );
+      // return updatedEmployee;
+    // } // end create and push employee
   }); // end on click
   clearInputFields();
 } // end pushEmployeeOnClick
@@ -76,6 +77,7 @@ function appendEmployee( first, last, id, jobTitle, salary  ){
                                 '<td>$'+ salary + '.00</td>' +
                                 '<td><button id="removeButton">Remove Employee</td></tr>' );
   clearInputFields();
+  calculateTotalEmployeeSalary( salary );
 } // end appendEmployeeToTable
 
 
@@ -84,11 +86,8 @@ function appendEmployee( first, last, id, jobTitle, salary  ){
 
 // this function will calculate the total of each employees salary
 function calculateTotalEmployeeSalary( salary ){
-  let totalEmployeeSalary = 0;
-  // loop through employees and add salaries to totalEmployeeSalary
-  for (let employee of employeeArray){
-    totalEmployeeSalary += salary;
-  } // end for of loop
+  // add new employee salary to the total employee salary
+  totalEmployeeSalary += salary;
   console.log( 'Total Employee Salary: $', Number(totalEmployeeSalary) );
   updateMonthlyCost( totalEmployeeSalary );
   // return totalEmployeeSalary;
@@ -97,7 +96,7 @@ function calculateTotalEmployeeSalary( salary ){
 // function to calculate monthly budget from the employee salary total
 function updateMonthlyCost( totalEmployeeSalary ){
   // new variable with a value of total annual salaries divided by 12
-  let monthlyBudget = totalEmployeeSalary / 12;
+  monthlyBudget = totalEmployeeSalary / 12;
   console.log( 'Monthly Budget: $', Number(monthlyBudget).toFixed(2) );
   // since the company's monthly budget is $20,000 - an if statement to indicate
   // what happens when the monthly budget is exceeded
