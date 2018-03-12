@@ -18,19 +18,16 @@ let employeeArray = [];
 
 // doc ready
 $( document ).ready( readyNow );
+
 // when doc is ready
 function readyNow(){
-
   // this function creates ONE employee object from the Employee class
   // and push it to the employeeArray
   pushEmployeeOnClick();
-  // a function that will calculate the monthly cost based on each employees salary
-  // calculateTotalEmployeeSalary();
   // clear the input fields once a user has made a submission
   clearInputFields();
   //a button that will remove employee from table
   removeEmployee();
-
 } // end readyNow
 
 // ---------------------- creating employee functions ---------------------
@@ -40,9 +37,9 @@ function pushEmployeeOnClick(){
   $( '#submitBtn' ).on( 'click', function(){
     // if any input field is left blank when trying to submit, alert the user
     // to fill in all input fields
-    // if ($('#firstNameInput').val()=='', $('#lastNameInput').val()=='', $('#idNumberInput').val()=='', $('#jobTitleInput').val()=='', $('#annualSalaryInput').val()==''){
-    //   alert('Fill in all input fields');
-    // } else {
+    if ($('#firstNameInput').val()=='', $('#lastNameInput').val()=='', $('#idNumberInput').val()=='', $('#jobTitleInput').val()=='', $('#annualSalaryInput').val()==''){
+      alert('Fill in all input fields');
+    } else {
       // variables that will house the input values for ease of rewriting and
       // using in preceding functions
       let first = $( '#firstNameInput' ).val();
@@ -57,11 +54,9 @@ function pushEmployeeOnClick(){
       console.log( employeeArray );
       //activate appendEmployee with the newly create class object info
       appendEmployee( first, last, id, jobTitle, salary  );
-      //activate calculateTotalEmployeeSalary() with employee salary info
-      // calculateTotalEmployeeSalary( salary );
-      // return updatedEmployee;
-    // } // end create and push employee
+    } // end create and push employee
   }); // end on click
+  //clear input fields after submission
   clearInputFields();
 } // end pushEmployeeOnClick
 
@@ -76,7 +71,9 @@ function appendEmployee( first, last, id, jobTitle, salary  ){
                                 '<td>' + jobTitle + '</td>' +
                                 '<td>$'+ salary + '.00</td>' +
                                 '<td><button id="removeButton">Remove Employee</td></tr>' );
+  // clear input fields after submission
   clearInputFields();
+  // activate the calculation of the total employee salary
   calculateTotalEmployeeSalary( salary );
 } // end appendEmployeeToTable
 
@@ -89,6 +86,7 @@ function calculateTotalEmployeeSalary( salary ){
   // add new employee salary to the total employee salary
   totalEmployeeSalary += salary;
   console.log( 'Total Employee Salary: $', Number(totalEmployeeSalary) );
+  // activate the calculate of monthly cost
   updateMonthlyCost( totalEmployeeSalary );
   // return totalEmployeeSalary;
 } // end calculateTotalEmployeeSalary
